@@ -1,0 +1,2 @@
+class UrlInvalidSchemaErr(Exception):
+    pass

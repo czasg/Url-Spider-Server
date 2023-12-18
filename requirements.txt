@@ -1,0 +1,15 @@
+pywss
+loggus
+requests
+BeautifulSoup4
+python-whois
+scikit-learn
+selenium
+et-xmlfile
+dnspython
+nltk
+pika
+python-Wappalyzer
+urllib3
+pydantic
+redis

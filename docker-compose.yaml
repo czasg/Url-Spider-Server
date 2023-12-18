@@ -1,0 +1,47 @@
+version: "2"
+services:
+  rds:
+    hostname: rds
+    image: "bitnami/redis:latest"
+    restart: always
+    environment:
+      - ALLOW_EMPTY_PASSWORD=true
+    ports:
+      - "6379:6379"
+  rmq:
+    hostname: rmq
+    image: "bitnami/rabbitmq:latest"
+    restart: always
+    environment:
+      - RABBITMQ_USERNAME=admin
+      - RABBITMQ_PASSWORD=admin
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+  server:
+    build:
+      context: .
+    command: ["server"]
+    restart: always
+#    env_file:
+#      - docker-compose.env
+    ports:
+      - "8080:8080"
+  spider:
+    build:
+      context: .
+    command: ["spider"]
+    restart: always
+#    env_file:
+#      - docker-compose.env
+  proxy:
+    build:
+      context: .
+    command: ["proxy"]
+    restart: always
+  chrome:
+    image: selenium/standalone-chrome:latest
+    restart: always
+    shm_size: "2g"
+    ports:
+      - "4444:4444"
